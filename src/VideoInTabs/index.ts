@@ -1,0 +1,1 @@
+export { VideoInTabs } from './VideoInTabs';

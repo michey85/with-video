@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import { AspectRatio, Heading, Tabs, TabPanels, TabPanel, Container } from '@chakra-ui/react';
-import ReactPlayer from 'react-player/youtube';
+import { Heading, Container } from '@chakra-ui/react';
 
-import PlayIcon from './assets/play.svg?react';
-import { TabMenu } from './TabMenu';
 import { Spoiler } from './Spoiler';
+import { VideoInTabs } from './VideoInTabs';
+// import { VideoList } from './VideoList';
 
 const videos: string[] = [
-  'https://youtu.be/g6dWAhuO4fw?si=VIGph1gFfBypkTle',
-  'https://youtu.be/qLoHEtwNuCE?si=kZzt8fuJgB9YRoQw',
-  'https://youtu.be/lUf8qC_xFHo?si=HQJTowvKwdKOgpud',
+  'https://www.youtube.com/embed/eUAd5f936Yg',
+  'https://www.youtube.com/embed/jfKfPfyJRdk',
+  'https://www.youtube.com/embed/iicfmXFALM8',
 ];
 
 function App() {
@@ -22,30 +21,8 @@ function App() {
       </Heading>
 
       <Spoiler title="Videos" isOpen={isOpen} onChange={() => setOpen(!isOpen)}>
-        <Tabs>
-          <TabMenu />
-
-          <TabPanels>
-            {videos.map((video) => (
-              <TabPanel key={video}>
-                <AspectRatio ratio={16 / 9}>
-                  {isOpen ? (
-                    <ReactPlayer
-                      light
-                      url={video}
-                      playIcon={<PlayIcon width="60" />}
-                      width="100%"
-                      height="100%"
-                      playing
-                    />
-                  ) : (
-                    <div />
-                  )}
-                </AspectRatio>
-              </TabPanel>
-            ))}
-          </TabPanels>
-        </Tabs>
+        <VideoInTabs videos={videos} isOpen={isOpen} />
+        {/* {isOpen ? <VideoList videos={videos} /> : <div />} */}
       </Spoiler>
     </Container>
   );
